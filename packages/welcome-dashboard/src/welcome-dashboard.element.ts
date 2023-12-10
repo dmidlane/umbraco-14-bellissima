@@ -45,10 +45,11 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 
 	render() {
 		return html`
-			<h1>
-				<umb-localize key="welcomeDashboard_heading">Welcome</umb-localize>
-				${this._currentUser?.name ?? 'Unknown'}!
-			</h1>
+			<uui-box>
+			<span slot="headline">
+                <umb-localize key="welcomeDashboard_heading">Welcome</umb-localize>
+                ${this._currentUser?.name ?? 'Unknown'}!
+            </span>
 			<div>
 				<p>
 					<umb-localize key="welcomeDashboard_bodytext">
@@ -60,8 +61,44 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 				</p>
 			</div>
 			<div id="users-wrapper">${this._userData?.map((user) => this._renderUser(user))}</div>
+			</uui-box>
+
+			<uui-box>
+			<uui-table id="users-wrapper">
+				<uui-table-row>
+					<uui-table-head-cell>Name</uui-table-head-cell>
+					<uui-table-head-cell>Email</uui-table-head-cell>
+					<uui-table-head-cell>languages</uui-table-head-cell>
+				</uui-table-row>
+				<uui-table-row class="user">
+					<uui-table-cell>${this._currentUser?.name}</uui-table-cell>
+					<uui-table-cell>${this._currentUser?.email}</uui-table-cell>
+					<uui-table-cell>
+						<uui-tag color="positive" look="primary">${this._currentUser?.languages?.length}</uui-tag>	
+					</uui-table-cell>
+				</uui-table-row>
+			</uui-table>
+		</uui-box>
+
+		<div style="width: 200px;">
+			<uui-card-user name="John Rabbit" href="www.google.com" target="_blank">
+				
+				<div style="margin-bottom: 12px">Editors</div>
+				<div>Has not logged in yet</div>
+
+			</uui-card-user>
+		</div>
 		`;
+	// ${this._userData?.map((user) => this._renderUser(user))}
 	}
+
+	// private _renderUser(user: UmbUserDetail) {
+	// 	if (!user) return;
+	// 	return html`<uui-table-row class="user">
+	// 		<uui-table-cell>${user.name}</uui-table-cell>
+	// 		<uui-table-cell>${user.email}</uui-table-cell>
+	// 		<uui-table-cell>${user.state}</uui-table-cell>
+	// 	</uui-table-row>`;
 
 	private _renderUser(user: UmbUserDetail) {
 		return html`<div class="user">
@@ -75,7 +112,17 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 		css`
 			:host {
 				display: block;
-				padding: 24px;
+				padding: var(--uui-size-layout-1);
+			}
+
+			uui-table-head-cell {
+				font-weight: bold;
+			}
+
+			.user:hover,
+			.user:focus {
+				cursor: pointer;
+				background-color: var(--uui-color-surface-alt);
 			}
 
 			#users-wrapper {
