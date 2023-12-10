@@ -480,3 +480,10 @@ umbraco-package-schema.json
 
 # Media files
 /wwwroot/media/
+App_Plugins/my-dashboard/dist/my-dashboard.js
+App_Plugins/my-dashboard/dist/my-dashboard.js.map
+.gitignore
+.gitignore
+App_Plugins/welcome-dashboard/dist/vite.svg
+App_Plugins/welcome-dashboard/dist/welcome-dashboard.js
+App_Plugins/welcome-dashboard/dist/welcome-dashboard.js.map
