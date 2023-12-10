@@ -3,6 +3,11 @@ import { LitElement, css, html, customElement, state } from "@umbraco-cms/backof
 import { UmbUserDetail,  } from "@umbraco-cms/backoffice/users";
 import { UmbElementMixin } from "@umbraco-cms/backoffice/element-api";
 
+// import { UmbUserDetail, UmbUserRepository } from "@umbraco-cms/backoffice/users";
+
+// commented out missing functionality
+
+
 @customElement('my-welcome-dashboard')
 export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 	@state()
@@ -13,7 +18,7 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 
 	private _auth?: typeof UMB_AUTH.TYPE;
 
-	private _userRepository = new UmbUserRepository(this);
+	// private _userRepository = new UmbUserRepository(this);
 
 	constructor() {
 		super();
@@ -21,7 +26,7 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 			this._auth = instance;
 			this._observeCurrentUser();
 		});
-		this._getDataFromRepository();
+		// this._getDataFromRepository();
 	}
 
 	//Get the current user
@@ -33,10 +38,10 @@ export class MyWelcomeDashboardElement extends UmbElementMixin(LitElement) {
 	}
 
 	//Get all users
-	private async _getDataFromRepository() {
-		const { data } = await this._userRepository.requestCollection();
-		this._userData = data?.items;
-	}
+	// private async _getDataFromRepository() {
+	// 	const { data } = await this._userRepository.requestCollection();
+	// 	this._userData = data?.items;
+	// }
 
 	render() {
 		return html`
